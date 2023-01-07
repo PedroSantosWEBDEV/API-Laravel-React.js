@@ -3,10 +3,8 @@
 namespace App\Http\Requests\User;
 
 use App\User;
-
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreUser extends FormRequest
@@ -29,9 +27,9 @@ class StoreUser extends FormRequest
     public function rules()
     {
         return [
-            'email'     => 'unique:users,email|email|required',
-            'name'      => 'required',
-            'password'  => 'required'
+            'email' => 'unique:users,email|email|required',
+            'name' => 'required',
+            'password' => 'required',
         ];
     }
 
@@ -46,11 +44,11 @@ class StoreUser extends FormRequest
 
         if ($validator->fails()) {
             throw new HttpResponseException(response()->json([
-                'msg'   => 'Ops! Algum campo obrigatório não foi preenchido.',
+                'msg' => 'Ops! Algum campo obrigatório não foi preenchido.',
                 'status' => false,
-                'errors'    => $validator->errors(),
-                'url'    => route('users.store')
+                'errors' => $validator->errors(),
+                'url' => route('users.store'),
             ], 403));
-       }
+        }
     }
 }

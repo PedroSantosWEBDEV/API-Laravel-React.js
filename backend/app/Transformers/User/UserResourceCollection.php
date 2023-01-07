@@ -2,45 +2,19 @@
 
 namespace App\Transformers\User;
 
-use App\Services\ResponseService;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class UserResource extends JsonResource
+class UserResourceCollection extends ResourceCollection
 {
-    /**
-     * @var
-     */
-    private $config;
-
     /**
      * Create a new resource instance.
      *
      * @param  mixed  $resource
      * @return void
      */
-    public function __construct($resource, $config = array())
-    {
-        // Ensure you call the parent constructor
-        parent::__construct($resource);
-
-        $this->config = $config;
-    }
-
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function toArray($request)
     {
-
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => '*********',
-        ];
+        return ['data' => $this->collection];
     }
 
     /**
@@ -51,7 +25,11 @@ class UserResource extends JsonResource
      */
     public function with($request)
     {
-        return ResponseService::default($this->config, $this->id);
+        return [
+            'status' => true,
+            'msg' => 'Listando dados',
+            'url' => route('users.index'),
+        ];
     }
 
     /**
