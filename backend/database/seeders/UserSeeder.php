@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         //
         $user = DB::table('users')->insertGetId([
-            'name'      => 'Usuário de Seed',
+            'name'      => 'Admin',
             'email'     => 'teste@teste.com',
             'password'  => '$2y$10$xMD9DsNkvTE6i8KdG8quge/Qk3K2EfMZQIQYcaa.LyFS8pp2tNHfq',
             'created_at' => Carbon::now(),
