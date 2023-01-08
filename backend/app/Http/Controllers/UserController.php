@@ -7,7 +7,7 @@ use App\Services\ResponseService;
 use App\Transformers\User\UserResource;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+
 class UserController extends Controller
 {
     private $user;
@@ -29,7 +29,7 @@ class UserController extends Controller
             $user = $this
                 ->user
                 ->create($request->all());
-        } catch (\Throwable | \Exception $e) {
+        } catch (\Throwable | \Exception$e) {
             return ResponseService::exception('users.store', null, $e);
         }
 
@@ -37,5 +37,3 @@ class UserController extends Controller
     }
 
 }
-
-// Route::post('register', 'UserController@store');
