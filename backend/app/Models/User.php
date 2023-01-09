@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -45,6 +44,7 @@ class User extends Authenticatable implements JWTSubject
             'email' => $fields['email'] ,
             'password' => Hash::make($fields['password']),
         ]);
+        
     }
     
     public function login($credentials){
@@ -54,6 +54,12 @@ class User extends Authenticatable implements JWTSubject
         }
         return $token;
     }
+
+    public function logout($token){
+        if (!Auth::invalidate($token)) {
+          throw new \Exception('Erro. Tente novamente.', -404);
+        }
+      }
 
     public function getJWTIdentifier()
     {
