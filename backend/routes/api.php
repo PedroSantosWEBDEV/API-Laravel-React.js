@@ -17,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::post('register', 'UserController@store'); 
-Route::post('register', [UserController::class, 'store'])->name('users.store');
+Route::controller(UserController::class)->group(function () {
+  Route::post('register', 'store')->name('users.store');
+  Route::post('login', 'login')->name('users.login');
+  Route::post('logout', 'logout')->name('users.logout');
+
+});
+// Route::post('register', [UserController::class, 'store'])->name('users.store');
+// Route::post('login', [UserController::class, 'login'])->name('users.login');
+// Route::post('logout', [UserController::class, 'logout'])->name('users.logout');
