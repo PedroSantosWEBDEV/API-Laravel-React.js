@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
@@ -54,12 +54,6 @@ class User extends Authenticatable implements JWTSubject
         }
         return $token;
     }
-
-    public function logout(){
-        if (Auth::logout()) {
-          throw new \Exception('Erro. Tente novamente.', -404);
-        }
-      }
 
     public function getJWTIdentifier()
     {
