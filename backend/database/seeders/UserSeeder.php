@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -19,6 +21,7 @@ class UserSeeder extends Seeder
             'name'      => 'Admin',
             'email'     => 'teste@teste.com',
             'password'  => '$2y$10$xMD9DsNkvTE6i8KdG8quge/Qk3K2EfMZQIQYcaa.LyFS8pp2tNHfq',
+            'remember_token' => '$2y$10$xMD9DsNkvTE6i8KdG8quge/Qk3K2EfMZQIQYcaa.LyFS8pp2tNHfq',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
