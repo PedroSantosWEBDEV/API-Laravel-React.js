@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskListController;
+use App\Http\Controllers\TasksController;
 use App\Http\Middleware\JwtMiddleware;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,5 +20,10 @@ use App\Http\Middleware\JwtMiddleware;
 Route::post('register', [UserController::class, 'store'])->name('users.store');
 Route::post('login', [UserController::class, 'login'])->name('users.login');
 Route::prefix('v1')->group(function () {
-        Route::post('logout', [UserController::class, 'logout'])->name('users.logout')->middleware(JwtMiddleware::class);
+
+    Route::apiResources(['tasklist' => 'TaskListController',]);
+
+    Route::post('completedTaskList', [TaskListController::class, 'completedTaskList'])->name('tasklist.completedTaskList');
+    Route::post('logout', [UserController::class, 'logout'])->name('users.logout')->middleware(JwtMiddleware::class);
+
 });

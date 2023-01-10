@@ -1,23 +1,16 @@
 <?php
 
-namespace Database\Factories;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\TaskList;
+use Faker\Generator as Faker;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TaskList>
- */
-class TaskListFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            //
-        ];
-    }
-}
+$factory->define(TaskList::class, function (Faker $faker) {
+    return [
+        'user_id' => function () {
+            return factory(App\Models\User::class)->create()->id;
+        },
+        'title' => $faker->name,
+        'status' => 0,
+    ];
+});
