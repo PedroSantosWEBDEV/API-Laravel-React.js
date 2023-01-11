@@ -21,6 +21,7 @@ class CreateTaskListsTable extends Migration
             $table->string('status');
             $table->timestamps();
         });
+        Schema::disableForeignKeyConstraints();
     }
 
     /**
