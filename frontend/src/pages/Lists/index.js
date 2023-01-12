@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header'
 import Task from '../../components/Task'
 import InsertList from '../../components/InsertList'
@@ -13,7 +13,7 @@ export default function Lists() {
   const [taskList, setTaskList] = useState([]);
   const [listId,setListId] = useState('');
 
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     api.get('api/v1/tasklist', {

@@ -13,7 +13,7 @@ export default function InsertTask({ onInsertTask, taskList }) {
   }, [taskList]);
 
   const handleChangeSelect = (event) => {
-    setSelectList(event?.target.value);
+    setSelectList(event.target.value);
   };
 
   const handleSubmit = async (event) => {
