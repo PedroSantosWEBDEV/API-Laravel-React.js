@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiPower } from 'react-icons/fi';
 import { AppBar, Toolbar  } from '@material-ui/core';
 
 export default function Header() {
   const [token] = useState(localStorage.getItem('token'));
-  const history = useHistory();
+  const history = useNavigate();
 
   if(token === '' || token === null){
     history.push('/');
