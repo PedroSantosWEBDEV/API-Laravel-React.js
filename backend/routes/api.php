@@ -15,19 +15,18 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
- */
+*/
 
 Route::post('register', [UserController::class, 'store'])->name('users.store');
 Route::post('login', [UserController::class, 'login'])->name('users.login');
-Route::post('completedTaskList', [TaskListController::class, 'completedTaskList'])->name('tasklist.completedTaskList');
-Route::put('task/close/{id}', [TasksController::class, 'closeTask'])->name('tasks.closeTask');
-Route::get('list/tasks/{id}', [TasksController::class, 'tasksByList'])->name('tasks.tasksByList');
+// Route::post('list', [TaskListController::class, 'store'])->name('tasklist.store');
 
 Route::prefix('v1')->group(function () {
-    // Route::apiResources([
-    //     'tasklist' => 'TaskListController',
-    //     'tasks' => 'TasksController',
-    // ]);
-    Route::post('logout', [UserController::class, 'logout'])->name('users.logout')->middleware(JwtMiddleware::class);
+Route::resource('tasklist',TaskListController::class);
+Route::resource('tasks',TasksController::class);
+// Route::post('tasklist', [TaskListController::class, 'show'])->name('tasklist.show');
+// Route::put('task/close/{id}', [TasksController::class, 'closeTask'])->name('tasks.closeTask');
+Route::get('list/tasks/{id}', [TasksController::class, 'tasksByList'])->name('tasks.tasksByList');
+Route::post('logout', [UserController::class, 'logout'])->name('users.logout')->middleware(JwtMiddleware::class);
 
 });

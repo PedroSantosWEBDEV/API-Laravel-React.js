@@ -75,10 +75,13 @@ class TasksController extends Controller
      */
     public function tasksByList($id)
     {
+        // print_r($id);
         try {
             $data = $this
                 ->tasks
                 ->tasksByList($id);
+            // print_r($id);
+            // die;
         } catch (\Throwable | \Exception$e) {
             return ResponseService::exception('tasks.tasksByList', $id, $e);
         }

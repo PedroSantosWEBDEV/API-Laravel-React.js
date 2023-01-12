@@ -8,12 +8,12 @@ export default function Header() {
   const history = useNavigate();
 
   if(token === '' || token === null){
-    history.push('/');
+    history('/');
   }
 
   function handleLogout() {
     localStorage.clear();
-    history.push('/');
+    history('/');
   }
 
   return (

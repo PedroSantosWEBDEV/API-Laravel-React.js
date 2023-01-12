@@ -23,7 +23,7 @@ export default function Lists() {
     }).then(response => {
       if(response.data.status && response.data.status === (401 || 498)){
         localStorage.clear();
-        history.push('/');
+        history('/');
       }else{
         setTaskList(response.data.data);
       }
@@ -40,7 +40,7 @@ export default function Lists() {
     }).then(response => {
       if(response.data.status && response.data.status === (401 || 498)){
         localStorage.clear();
-        history.push('/');
+        history('/');
       }
       setTaskList([...taskList, response.data.data]);
     }).catch(err => {
@@ -58,7 +58,7 @@ export default function Lists() {
       console.log(response)
       if(response.data.status && response.data.status === (401 || 498)){
         localStorage.clear();
-        history.push('/');
+        history('/');
       }
       setListId(response.data.data.list_id)
     }).catch(err => {
