@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class TaskList extends Model
 {
@@ -19,10 +20,13 @@ class TaskList extends Model
 
     public function create($fields)
     {
-        return auth()
-        ->user()
-        ->TaskList()
-        ->create($fields);
+        $user = '';
+        $tasklist = parent::create([
+            'title' => $fields['title'],
+            'user_id' => 1,
+            'status' => 0 
+        ]);
+        return $tasklist;
     }
 
     public function show($id)
