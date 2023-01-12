@@ -20,7 +20,7 @@ class TaskList extends Model
 
     public function create($fields)
     {
-        $user = '';
+        // $user = '';
         $tasklist = parent::create([
             'title' => $fields['title'],
             'user_id' => 1,
@@ -57,10 +57,10 @@ class TaskList extends Model
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function tasks(){
-        return $this->hasMany('App\Tasks');
+        return $this->hasMany('App\Models\Tasks');
     }
 }
