@@ -27,10 +27,7 @@ class TaskList extends Model
 
     public function show($id)
     {
-        $show = auth()
-        ->user()
-        ->TaskList()
-        ->find($id);
+        $show = TaskList::find($id);
  
         if (!$show) {
             throw new \Exception('Nada Encontrado', -404);

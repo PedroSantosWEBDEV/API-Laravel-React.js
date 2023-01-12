@@ -16,7 +16,7 @@ export default function Lists() {
   const history = useNavigate();
 
   useEffect(() => {
-    api.get('api/v1/tasklist', {
+    api.get('api/v1/taskslist/1', {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -33,7 +33,7 @@ export default function Lists() {
   }, [token]);
 
   async function onInsertList(data){
-    api.post("/api/v1/tasklist", data, {
+    api.post("/api/v1/taskslist/create", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       }

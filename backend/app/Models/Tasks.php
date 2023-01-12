@@ -48,9 +48,7 @@ class Tasks extends Model
     }
 
     public function tasksByList($listId){
-        $tasks = Auth()
-        ->user()
-        ->tasks()->where('list_id', '=', $listId)->get();
+        $tasks = Tasks::where('list_id', '=', $listId)->get();
 
         return $tasks;
     }
