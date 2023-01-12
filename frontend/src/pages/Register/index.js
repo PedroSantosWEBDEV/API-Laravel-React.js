@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -11,25 +11,25 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const history = useHistory();
+  const history = useNavigate();
 
   async function handleRegister(e) {
     e.preventDefault();
 
     const data = {
-      name,
-      email,
-      password,
+      "name":name,
+      "email":email,
+      "password":password,
       "password_confirmation":confirmPassword,
     };
     
     try {
-      api.post('api/register', data)
+      await api.post('api/register', data)
       .then(async (res) =>{
         if(res.data.status){
           const responseLogin = await api.post('api/login', { email, password });
           localStorage.setItem('token', responseLogin.data.token);
-          history.push('/lists');
+          history('/lists');
         }
       });
     } catch (err) {
