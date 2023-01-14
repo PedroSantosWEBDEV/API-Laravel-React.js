@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use Illuminate\Console\View\Components\Task;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tasks extends Model
 {
+    
     protected $fillable = ['list_id', 'user_id','title','status'];
 
     public function index(){
+        // $tasks = DB::table('tasks')->get();
         return auth()
-        ->user()
-        ->tasks;
+            ->user()
+            ->Tasks;
     }
 
     public function store($fields)
@@ -48,7 +52,7 @@ class Tasks extends Model
     }
 
     public function tasksByList($listId){
-        $tasks = Tasks::where('list_id', '=', $listId)->get();
+        $tasks = DB::table('tasks')->where('list_id', '=', $listId)->get();
 
         return $tasks;
     }
@@ -107,12 +111,13 @@ class Tasks extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user_id', 'id');
+        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
     
     public function tasklist()
     {
-        return $this->belongsToMany('App\Models\Tasks', 'list_id', 'user_id');
+        return $this->belongsToMany(\App\Models\Tasks::class, 'tasks', 'list_id', 'id');
+        // return $this->hasMany(\App\Models\Tasks::class,'list_id', 'id');
         // return $this->belongsTo('App\Tasks', 'list_id', 'id');
     }
 }

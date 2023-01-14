@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
+    protected $primaryKey = 'id';
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -69,6 +69,7 @@ class User extends Authenticatable implements JWTSubject
     public function tasks()
     {
         return $this->hasMany(\App\Models\Tasks::class,'user_id','id');
+        
     }
 
     public function getJWTIdentifier()

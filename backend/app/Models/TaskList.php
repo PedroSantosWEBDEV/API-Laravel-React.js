@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class TaskList extends Model
 {
     protected $fillable = ['user_id','title','status'];
+    protected $primaryKey = 'id'; 
 
     public function index(){
         return auth()
@@ -19,10 +22,18 @@ class TaskList extends Model
 
     public function create($fields)
     {
-        return auth()
-        ->user()
-        ->TaskList()
-        ->create($fields);
+ 
+        return parent::create([
+            'title' => $fields['title'],
+            'user_id' => 1,
+            'status' => 0,
+            
+        ]);
+    }
+
+    public function scopeMine($query)
+    {
+        return $query->where('user_id', Auth::id());
     }
 
     public function show($id)
@@ -53,10 +64,10 @@ class TaskList extends Model
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function tasks(){
-        return $this->hasMany('App\Tasks');
+        return $this->hasMany(\App\Models\Tasks::class,'list_id', 'id');
     }
 }

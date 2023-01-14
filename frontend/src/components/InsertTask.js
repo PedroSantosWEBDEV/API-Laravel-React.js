@@ -7,12 +7,15 @@ export default function InsertTask({ onInsertTask, taskList }) {
   const [taskName, setTaskName] = useState("");
   
   useEffect(() => {
-    if(taskList.length > 0){
+    // console.log(taskList)
+    if(taskList.length >= 0){
+      // console.log("AQUI")
       setLists(taskList);
     }
   }, [taskList]);
 
   const handleChangeSelect = (event) => {
+    console.log(event)
     setSelectList(event.target.value);
   };
 
@@ -55,7 +58,7 @@ export default function InsertTask({ onInsertTask, taskList }) {
               value={selectList}
               onChange={handleChangeSelect}
             >
-              {lists.length > 0 ? lists.map((list) => 
+              {lists.length >= 0 ? lists.map((list) => 
                 (
                   <MenuItem key={list.id} value={list.id}>{list.title}</MenuItem>
                 )

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\TaskList;
 use App\Http\Requests\TaskList\StoreTaskList;
+use App\Models\User;
 use App\Services\ResponseService;
 use App\Transformers\TaskList\TaskListResource;
 use App\Transformers\TaskList\TaskListResourceCollection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskListController extends Controller
 {
@@ -36,6 +38,8 @@ class TaskListController extends Controller
      */
     public function store(StoreTaskList $request)
     {
+        
+        // print_r($data);
         try {
             $data = $this
                 ->tasklist

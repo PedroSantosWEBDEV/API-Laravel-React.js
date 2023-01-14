@@ -25,6 +25,7 @@ export default function Lists() {
         localStorage.clear();
         history('/');
       }else{
+        // console.log(response.data.data.title);
         setTaskList(response.data.data);
       }
     }).catch(err => {
@@ -50,7 +51,7 @@ export default function Lists() {
 
   async function onInsertTask(data){
     await setListId('')
-    await api.post("/api/v1/tasks", data, {
+    await api.post("/api/v1/list/tasks/1", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
