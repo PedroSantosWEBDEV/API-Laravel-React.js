@@ -33,7 +33,7 @@ export default function Lists() {
   }, [token]);
 
   async function onInsertList(data){
-    api.post("", data, {
+    api.post("/api/v1/tasklist", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
