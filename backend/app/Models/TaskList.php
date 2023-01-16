@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 class TaskList extends Model
 {
@@ -27,11 +26,6 @@ class TaskList extends Model
             'status' => 0,
             
         ]);
-    }
-
-    public function scopeMine($query)
-    {
-        return $query->where('user_id', Auth::id());
     }
 
     public function show($id)
@@ -66,6 +60,7 @@ class TaskList extends Model
     }
 
     public function tasks(){
+
         return $this->hasMany(\App\Models\Tasks::class,'list_id', 'id');
     }
 }

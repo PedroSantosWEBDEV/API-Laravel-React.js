@@ -38,8 +38,6 @@ class TaskListController extends Controller
      */
     public function store(StoreTaskList $request)
     {
-        
-        // print_r($data);
         try {
             $data = $this
                 ->tasklist
