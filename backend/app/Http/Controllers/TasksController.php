@@ -75,7 +75,7 @@ class TasksController extends Controller
      */
     public function tasksByList($id)
     {
-        // print_r($id);
+        
         try {
             $data = $this
                 ->tasks
@@ -97,6 +97,7 @@ class TasksController extends Controller
      */
     public function closeTask($id)
     {
+        
         try {
             $data = $this
                 ->tasks
