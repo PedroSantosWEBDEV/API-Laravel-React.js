@@ -24,8 +24,6 @@ Route::post('login', [UserController::class, 'login'])->name('users.login');
 Route::prefix('v1')->group(function () {
 Route::resource('tasklist',TaskListController::class);
 Route::resource('tasks',TasksController::class);
-Route::get('taskslist/{id}', [TaskListController::class, 'show'])->name('tasklist.show');
-Route::post('taskslist/create', [TaskListController::class, 'store'])->name('tasklist.store');
 Route::put('task/close/{id}', [TasksController::class, 'closeTask'])->name('tasks.closeTask');
 Route::get('list/tasks/{id}', [TasksController::class, 'tasksByList'])->name('tasks.tasksByList');
 Route::post('logout', [UserController::class, 'logout'])->name('users.logout')->middleware(JwtMiddleware::class);

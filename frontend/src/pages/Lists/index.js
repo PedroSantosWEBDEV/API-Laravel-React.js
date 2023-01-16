@@ -16,16 +16,15 @@ export default function Lists() {
   const history = useNavigate();
 
   useEffect(() => {
-    api.get('api/v1/taskslist/1', {
+    api.get('api/v1/tasklist', {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     }).then(response => {
       if(response.data.status && response.data.status === (401 || 498)){
         localStorage.clear();
-        history('/');
+        history.push('/');
       }else{
-        // console.log(response.data.data.title);
         setTaskList(response.data.data);
       }
     }).catch(err => {
@@ -34,14 +33,14 @@ export default function Lists() {
   }, [token]);
 
   async function onInsertList(data){
-    api.post("/api/v1/taskslist/create", data, {
+    api.post("", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     }).then(response => {
       if(response.data.status && response.data.status === (401 || 498)){
         localStorage.clear();
-        history('/');
+        history.push('/');
       }
       setTaskList([...taskList, response.data.data]);
     }).catch(err => {
@@ -51,7 +50,7 @@ export default function Lists() {
 
   async function onInsertTask(data){
     await setListId('')
-    await api.post("/api/v1/list/tasks/1", data, {
+    await api.post("/api/v1/tasks", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
@@ -59,7 +58,7 @@ export default function Lists() {
       console.log(response)
       if(response.data.status && response.data.status === (401 || 498)){
         localStorage.clear();
-        history('/');
+        history.push('/');
       }
       setListId(response.data.data.list_id)
     }).catch(err => {

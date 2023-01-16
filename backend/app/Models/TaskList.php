@@ -7,17 +7,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\DB;
 class TaskList extends Model
 {
     protected $fillable = ['user_id','title','status'];
     protected $primaryKey = 'id'; 
 
     public function index(){
-        return auth()
-        ->user()
-        ->TaskList
-        ->sortBy("status");
+        $tasklist = DB::table('task_lists')->get();
+        return $tasklist;
     }
 
     public function create($fields)
